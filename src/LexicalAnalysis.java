@@ -24,7 +24,6 @@ public class LexicalAnalysis
         // extracting the numbers/integers
         String alteredInput = sourceCode.replaceAll("[abcdefghijklmnopqrstuvwxyz,='\"]", "").replaceAll(" ", "");
 
-
         for (String stringArray : arraySplit1)
         {
             if (stringArray.equals("int") || stringArray.equals("double") || stringArray.equals("char") || stringArray.equals("String"))
@@ -35,22 +34,16 @@ public class LexicalAnalysis
             {
                 System.out.print(" <assignment_operator> ");
             }
-            else if (stringArray.contains("\'") || stringArray.contains(".") || stringArray.equals(alteredInput))
+            else if (stringArray.contains("\"") && m1.matches() || stringArray.contains("\'") || stringArray.contains(".") || stringArray.equals(alteredInput))
             {
                 System.out.print(" <value> ");
+                break;
             }
             else if (!stringArray.contains("\"") && !stringArray.contains("\'") && !stringArray.contains(".") && !stringArray.equals(alteredInput))
             {
                 System.out.print(" <identifier> ");
             }
         }
-
-        // if stringArray contains a string ("")
-         if (m1.matches())
-         {
-             System.out.print(" <value> ");
-         }
-
 
         for (String stringArray : arraySplit2) {
 
@@ -59,6 +52,7 @@ public class LexicalAnalysis
                 System.out.print(" <delimiter> ");
             }
         }
+  
     }
 }
 
